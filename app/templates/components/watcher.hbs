@@ -1,9 +1,12 @@
 <div class="transcript">
   <div class="transcript__inner">
-   {{#each transcript as |m| }}
-     <div class="transcript__message">{{m.message}}</div>
-   {{/each}}
+    {{#each transcript as |m| }}
+      <div class="transcript__message {{if m.isFinal "transcript__message--isFinal"}}">{{m.message}}</div>
+    {{/each}}
   </div>
 </div>
-<video id="video" autoplay="true" ></video>
-<canvas id="canvas"></canvas>
+<video id="video" autoplay="true"></video>
+<div id="canvas-overlay" onclick={{action "click"}} >
+  <canvas id="canvas" ></canvas>
+  <div id="flash"></div>
+</div>

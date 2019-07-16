@@ -46,17 +46,25 @@ export default Component.extend({
   snapPic() {
     const video = document.getElementById('video');
     const canvas = document.getElementById('canvas');
+    const canvasOverlay = document.getElementById('canvas-overlay');
     const context = canvas.getContext('2d');
-    canvas.classList.remove("snapped");
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
+    canvasOverlay.classList.add("flash");
     context.drawImage(video, 0, 0);
-    setTimeout(()=> {
-      canvas.classList.add("snapped");
-    },2000);
   },
   didInsertElement() {
     this.registerVoice();
     this.registerUserVideo(document.getElementById('video'));
+
+    const canvasOverlay = document.getElementById('canvas-overlay');
+    canvasOverlay.addEventListener("animationend", () => {
+        canvasOverlay.classList.remove("flash");
+    });
+  },
+  actions: {
+    click(event) {
+      this.snapPic();
+    }
   }
 });

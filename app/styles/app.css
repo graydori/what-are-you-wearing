@@ -2,6 +2,7 @@ video {
   width: 100%;
   height: 100%;
 }
+
 body, html {
   margin: 0;
   padding: 0;
@@ -19,6 +20,7 @@ body, html {
   font-weight: bold;
   font-size: 3rem;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .transcript__inner {
@@ -29,7 +31,14 @@ body, html {
 }
 
 .transcript__message {
-  padding: 0.3rem;
+  display: inline-block;
+  margin: 0.3rem;
+  white-space: nowrap;
+  line-height: 1.9rem;
+}
+
+.transcript__message.transcript__message--isFinal {
+  border-bottom: 2px solid;
 }
 
 canvas {
@@ -37,10 +46,37 @@ canvas {
   top:0;
   z-index: 2;
   width: 100%;
-  opacity: 1;
-  transition: all 2s;
+  opacity: 0;
+}
+#flash {
+  position: fixed;
+  top:0;
+  left: 0;
+  z-index: 3;
+  background-color: rgba(255,255,255,1);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
 }
 
-canvas.snapped {
-  opacity: 0;
+.flash #flash {
+  animation: flash 0.5s;
+  animation-fill-mode: backwards;
+}
+
+.flash canvas {
+  animation: flash 5s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes flash{
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
 }
