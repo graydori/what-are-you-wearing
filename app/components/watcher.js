@@ -63,7 +63,7 @@ export default Component.extend({
     });
   },
   actions: {
-    click(event) {
+    click() {
       this.snapPic();
     }
   }
