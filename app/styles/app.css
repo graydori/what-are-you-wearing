@@ -7,6 +7,7 @@ body, html {
   margin: 0;
   padding: 0;
   background: #000;
+  font-family: 'Raleway', sans-serif;
 }
 
 .transcript {
@@ -35,10 +36,11 @@ body, html {
   margin: 0.3rem;
   white-space: nowrap;
   line-height: 1.9rem;
+  opacity: 0.5;
 }
 
 .transcript__message.transcript__message--isFinal {
-  border-bottom: 2px solid;
+  opacity: 0.8;
 }
 
 canvas {
